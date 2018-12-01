@@ -1,8 +1,8 @@
 # Hideqlib
 [![](https://jitpack.io/v/ryanbekhen/Hideqlib.svg)](https://jitpack.io/#ryanbekhen/Hideqlib)
 
-Step 1. Add the JitPack repository to your build file&nbsp;
-Add it in your root build.gradle at the end of repositories:<br/>
+Step 1. Add the JitPack repository to your build file \
+Add it in your root build.gradle at the end of repositories:\
 `allprojects {<br/>
   repositories {<br/>
     ...<br/>
