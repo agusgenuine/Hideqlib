@@ -1,5 +1,10 @@
 apply plugin: 'com.android.library'
+
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.ryanbekhen'
 apply plugin: 'kotlin-android'
+
 android {
     compileSdkVersion 28
 
@@ -34,6 +39,46 @@ dependencies {
 repositories {
     mavenCentral()
 }
-apply plugin: 'com.github.dcendents.android-maven'
+task sourcesJar(type: Jar) {
 
-group='com.github.ryanbekhen'
+    from android.sourceSets.main.java.srcDirs
+
+    classifier = 'sources'
+
+}
+
+
+
+task javadoc(type: Javadoc) {
+
+    failOnError  false
+
+    source = android.sourceSets.main.java.sourceFiles
+
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+
+    classpath += configurations.compile
+
+}
+
+
+
+// build a jar with javadoc
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+
+    classifier = 'javadoc'
+
+    from javadoc.destinationDir
+
+}
+
+
+
+artifacts {
+
+    archives sourcesJar
+
+    archives javadocJar
+
+}
