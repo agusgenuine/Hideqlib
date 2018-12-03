@@ -15,10 +15,9 @@ import java.util.*
 
 class WebViewProxy {
     companion object {
-
         /**
          * This function to check whether you have used a proxy.
-         * Must have permission ACCESS_WIFI_STATE and build version in SDK 14 or above
+         * Must have permission ACCESS_WIFI_STATE and build version in ICE CREAM SANDWICH or above
          * @param context context application of activity
          * @return returns result true if using a proxy
          * @see android.permission.ACCESS_WIFI_STATE
@@ -73,7 +72,7 @@ class WebViewProxy {
         }
         /**
          * This function enable proxy in webview.
-         * Must build version in SDK 19 or above
+         * Must build version in KITKAT or above
          * @param context context application of activity
          */
         @RequiresApi(Build.VERSION_CODES.KITKAT)
@@ -83,8 +82,9 @@ class WebViewProxy {
         }
 
         /**
-         * This function enable proxy in webview.
-         * Must build version in SDK 19 or above
+         * This function enable proxy in webview. You must write before
+         * super.onCreate(savedInstanceState)
+         * Must build version in KITKAT or above
          * @param context context application of activity
          */
         @RequiresApi(Build.VERSION_CODES.KITKAT)

@@ -4,8 +4,6 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.annotation.RequiresApi
-import android.util.Log
-import com.subisakah.hideqlib.WebViewProxy
 
 class MainActivity : AppCompatActivity() {
 
