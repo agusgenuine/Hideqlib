@@ -23,7 +23,8 @@ class WebViewProxy {
          * @see android.permission.ACCESS_WIFI_STATE
          */
         @SuppressLint("ObsoleteSdkInt")
-        public fun isUsingProxy(context: Context) : Boolean {
+        @JvmStatic
+        fun isUsingProxy(context: Context) : Boolean {
             val isAboveICS: Boolean = Build.VERSION.SDK_INT >= 14
             val proxyAddress: String?
             (context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager).connectionInfo
@@ -70,14 +71,16 @@ class WebViewProxy {
                 }
             }
         }
+
         /**
          * This function enable proxy in webview.
          * Must build version in KITKAT or above
          * @param context context application of activity
          */
         @RequiresApi(Build.VERSION_CODES.KITKAT)
+        @JvmStatic
         @Throws(Exception::class)
-        public fun setEnabled(context: Context, host: String, port: Int) {
+        fun setEnabled(context: Context, host: String, port: Int) {
             WebViewProxy.setWebviewProxy(context, host, port)
         }
 
@@ -88,8 +91,9 @@ class WebViewProxy {
          * @param context context application of activity
          */
         @RequiresApi(Build.VERSION_CODES.KITKAT)
+        @JvmStatic
         @Throws(Exception::class)
-        public fun setDisabled(context: Context) {
+        fun setDisabled(context: Context) {
             WebViewProxy.setWebviewProxy(context, "", 0)
         }
     }
