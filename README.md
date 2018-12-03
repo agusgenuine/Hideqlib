@@ -14,6 +14,6 @@ allprojects {
 Step 2. Add the dependency\
 ```gradle
 dependencies {
-    implementation 'com.github.ryanbekhen:Hideqlib:-SNAPSHOT'
+    implementation 'com.github.ryanbekhen:Hideqlib:1.0'
 }
 ```
