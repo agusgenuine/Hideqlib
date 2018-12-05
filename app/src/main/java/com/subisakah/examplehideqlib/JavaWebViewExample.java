@@ -31,7 +31,6 @@ public class JavaWebViewExample extends AppCompatActivity{
         params.put("submit", "Login");
         params.put("user", "android");
         params.put("pass", "android");
-        params.put("Geo", "Indonesia");
         if (Brow != null) {
             params.put("brow", Brow);
         }

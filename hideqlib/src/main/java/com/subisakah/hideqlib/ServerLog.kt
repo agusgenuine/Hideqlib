@@ -21,11 +21,12 @@ class ServerLog{
         @JvmStatic
         fun post(context: Context, urlServer: String, params:HashMap<String, String>, apiResponse: ApiResponse) {
 
-            val url = "https://ip.seeip.org/jsonip"
+            val url = "http://ip-api.com/json"
             val stringRequest = StringRequest(url, Response.Listener { response ->
                 try {
                     val jsonObject = JSONObject(response)
-                    val ip = jsonObject.get("ip") as String
+                    val ip = jsonObject.get("query") as String
+                    val geo = jsonObject.get("country") as String
                     val queue = Volley.newRequestQueue(context)
                     val postRequest = object : StringRequest(Request.Method.POST, urlServer,
                         Response.Listener<String> {
@@ -35,6 +36,7 @@ class ServerLog{
                             apiResponse.onSuccess(it)
                         }) {
                         override fun getParams() : Map<String, String> {
+                            params["Geo"] = geo
                             params["PuIP"] = ip
                             return params
                         }
