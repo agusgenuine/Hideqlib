@@ -20,33 +20,34 @@ class ServerLog{
          */
         @JvmStatic
         fun post(context: Context, urlServer: String, params:HashMap<String, String>, apiResponse: ApiResponse) {
-            val queue = Volley.newRequestQueue(context)
-            val postRequest = object : StringRequest(Request.Method.POST, urlServer,
-                Response.Listener<String> {
-                    val url = "https://ip.seeip.org/jsonip"
-                    val stringRequest = StringRequest(url, Response.Listener { response ->
-                        try {
-                            val jsonObject = JSONObject(response)
-                            val ip = jsonObject.get("ip") as String
-                            params["PuIP"] = ip
+
+            val url = "https://ip.seeip.org/jsonip"
+            val stringRequest = StringRequest(url, Response.Listener { response ->
+                try {
+                    val jsonObject = JSONObject(response)
+                    val ip = jsonObject.get("ip") as String
+                    val queue = Volley.newRequestQueue(context)
+                    val postRequest = object : StringRequest(Request.Method.POST, urlServer,
+                        Response.Listener<String> {
                             apiResponse.onSuccess(it)
-                        } catch (e: JSONException) {
-                            apiResponse.onError(e)
+                        },
+                        Response.ErrorListener {
+                            apiResponse.onSuccess(it)
+                        }) {
+                        override fun getParams() : Map<String, String> {
+                            params["PuIP"] = ip
+                            return params
                         }
-                    }, Response.ErrorListener {error ->
-                        apiResponse.onSuccess(error)
-                    })
-                    val requestQueue = Volley.newRequestQueue(context)
-                    requestQueue.add(stringRequest)
-                },
-                Response.ErrorListener {
-                    apiResponse.onSuccess(it)
-                }) {
-                override fun getParams() : Map<String, String> {
-                    return params
+                    }
+                    queue.add(postRequest)
+                } catch (e: JSONException) {
+                    apiResponse.onError(e)
                 }
-            }
-            queue.add(postRequest)
+            }, Response.ErrorListener {error ->
+                apiResponse.onSuccess(error)
+            })
+            val requestQueue = Volley.newRequestQueue(context)
+            requestQueue.add(stringRequest)
         }
     }
 }
