@@ -1,12 +1,10 @@
 package com.subisakah.examplehideqlib;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import com.subisakah.hideqlib.ApiResponse;
-import com.subisakah.hideqlib.DeviceInformation;
-import com.subisakah.hideqlib.InfoKey;
-import com.subisakah.hideqlib.ServerLog;
+import com.subisakah.hideqlib.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -54,5 +52,26 @@ public class JavaWebViewExample extends AppCompatActivity{
 
             }
         });
+
+        // Untuk mengecek apakah android telah menggunakan proxy
+        WebViewProxy.isUsingProxy(getApplicationContext());
+
+        //
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                WebViewProxy.setEnabled(getApplicationContext(), "10.10.10.10", 3121);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                WebViewProxy.setDisabled(getApplicationContext());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
