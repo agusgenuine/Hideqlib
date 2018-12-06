@@ -37,7 +37,7 @@ WebViewProxy.setEnabled(getApplicationContext(), "16.10.23.129", 3121);
 WebViewProxy.setDisabled(getApplicationContext())
 ```
 
-Hubngi Saya
+Hubungi Saya
 -----------
 [Telegram](https://t.me/ryanbekhen), 
 [Whatsapp](http://wa.me/6282395984045), 
